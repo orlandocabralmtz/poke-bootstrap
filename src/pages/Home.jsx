@@ -16,6 +16,10 @@ const Home = () => {
     setSearchTerm(event.target.value)
   }
 
+  const filteredPokemons = pokemons.filter(pokemon => {
+    return pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()) // filter es una función que recorre un array y devuelve un nuevo array con los elementos que cumplan la condición - includes es una función que devuelve true si el string que se le pasa como parámetro está incluido en el string sobre el que se ejecuta la función
+  })
+
   return (
     <div className='container'>
       <h1>Home</h1>
@@ -33,7 +37,7 @@ const Home = () => {
 
       <div className='row'>
         {
-        pokemons.map(pokemon => ( // map es una función que recorre un array y devuelve un nuevo array
+        filteredPokemons.map(pokemon => ( // map es una función que recorre un array y devuelve un nuevo array
           <div className='col-sm-4 mb-4' key={pokemon.name}>
             <div className='card'>
               <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url.split('/')[6]}.png`} alt='' /> {/* split es una función que separa un string en un array. */}
