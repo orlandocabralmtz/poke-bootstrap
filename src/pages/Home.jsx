@@ -11,15 +11,32 @@ const Home = () => {
         setPokemons(data.results) // setPokemons es una función que actualiza el estado de pokemons
       }).catch(error => console.error(error)) // catch es una función que captura el error en caso de que la promesa falle
   }, []) // se deja el array vacío para que el useEffect se ejecute solo una vez
+
+  const handleSearch = (event) => { // esta función se ejecuta cada vez que se escribe en el input. guarda el valor del input en el estado searchTerm
+    setSearchTerm(event.target.value)
+  }
+
   return (
     <div className='container'>
       <h1>Home</h1>
+
+      <form className='form-inline my-2 w-100'>
+        <input
+          type='text'
+          className='form-control'
+          placeholder='¿Que Pokemon buscas?'
+          id='search'
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </form>
+
       <div className='row'>
         {
         pokemons.map(pokemon => ( // map es una función que recorre un array y devuelve un nuevo array
           <div className='col-sm-4 mb-4' key={pokemon.name}>
             <div className='card'>
-              <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url.split('/')[6]}.png`} alt='' />
+              <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url.split('/')[6]}.png`} alt='' /> {/* split es una función que separa un string en un array. */}
               <div className='card-body'>
                 <h5 className='card-title'>{pokemon.name}</h5>
               </div>
