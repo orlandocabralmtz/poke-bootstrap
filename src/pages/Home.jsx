@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]) // lista de pokemon
@@ -40,9 +41,11 @@ const Home = () => {
         filteredPokemons.map(pokemon => ( // map es una función que recorre un array y devuelve un nuevo array
           <div className='col-sm-4 mb-4' key={pokemon.name}>
             <div className='card'>
-              <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url.split('/')[6]}.png`} alt='' /> {/* split es una función que separa un string en un array. */}
+              <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url.split('/')[6]}.png`} className='card-img-top' alt={pokemon.name} /> {/* split es una función que separa un string en un array. */}
               <div className='card-body'>
-                <h5 className='card-title'>{pokemon.name}</h5>
+                <Link to={`/pokemon/${pokemon.url.split('/')[6]}`}>
+                  <h5 className='card-title'>{pokemon.name}</h5>
+                </Link>
               </div>
             </div>
           </div>
