@@ -8,7 +8,7 @@ const RoutesIndex = () => {
     <Routes>
       <Route path='/' element={<Home />} /> {/* el elemento Home se renderiza cuando la ruta es / */}
       <Route path='/about' element={<About />} /> {/* el elemento h1 se renderiza cuando la ruta es /about */}
-      <Route path='/pokemon/' element={<PokemonDetail />} />
+      <Route path='/pokemon/:id' element={<PokemonDetail />} />
     </Routes>
   )
 }
